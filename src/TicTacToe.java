@@ -18,9 +18,9 @@ public class TicTacToe extends JFrame {
     final String BTN_EXIT = "Exit";
 
     Canvas canvas = new Canvas();
-    Field field = new Field(FIELD_SIZE, CELL_SIZE);
-    Human human = new Human(field.getHumanDot());
-    AI ai = new AI(field.getAIDot());
+    //Field field = new Field(FIELD_SIZE, CELL_SIZE);
+    //Human human = new Human(field.getHumanDot());
+    //AI ai = new AI(field.getAIDot());
 
     public static void main(String args[]) {
         new TicTacToe();
@@ -36,8 +36,37 @@ public class TicTacToe extends JFrame {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
+                //human.turn()
+                canvas.repaint();
+                //if (field.isGameOver())
+                    //JOptionPane.showMessageDialog(TicTacToe.this, field.getGameOverMsg());
             }
         });
+        JButton init = new JButton(BTN_INIT);
+        init.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //field.init();
+                canvas.repaint();
+            }
+        });
+        JButton exit = new JButton(BTN_EXIT);
+        exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
+        JPanel bp = new JPanel();
+        bp.setLayout(new GridLayout());
+        bp.add(init);
+        bp.add(exit);
+
+        setLayout(new BorderLayout());
+        add(canvas, BorderLayout.CENTER);
+        add(bp, BorderLayout.SOUTH);
+        setVisible(true);
     }
 
 }
