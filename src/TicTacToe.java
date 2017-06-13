@@ -3,8 +3,9 @@
  */
 import javax.swing.*;
 import java.awt.*;
-import  java.awt.event.*;
-import java.lang.reflect.Field;
+import java.awt.event.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
 
 public class TicTacToe extends JFrame {
     final String TITLE_OF_PROGRAM = "Tic Tac Toe";
@@ -18,7 +19,7 @@ public class TicTacToe extends JFrame {
     final String BTN_EXIT = "Exit";
 
     Canvas canvas = new Canvas();
-    //Field field = new Field(FIELD_SIZE, CELL_SIZE);
+    Field field = new Field (FIELD_SIZE, CELL_SIZE);
     //Human human = new Human(field.getHumanDot());
     //AI ai = new AI(field.getAIDot());
 
@@ -36,10 +37,11 @@ public class TicTacToe extends JFrame {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
+                System.out.println(e.getX() + ":" + e.getY());
                 //human.turn()
                 canvas.repaint();
-                //if (field.isGameOver())
-                    //JOptionPane.showMessageDialog(TicTacToe.this, field.getGameOverMsg());
+                if (field.isGameOver())
+                    JOptionPane.showMessageDialog(TicTacToe.this, field.getGameOverMsg());
             }
         });
         JButton init = new JButton(BTN_INIT);
